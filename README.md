@@ -12,7 +12,7 @@ To install stog run the following command (if necessary as root):
 Title and page content are separated by the first occurence of '|' in the input
 string.
 
-The content is wrapped inside a <p> element. You can use other HTML elements in
+The content is wrapped inside a `<p>` element. You can use other HTML elements in
 the input. The input string must not contain linebreaks.
 
 ### Example
