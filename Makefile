@@ -1,4 +1,7 @@
-stog:
+config.h:
+	cp config.def.h $@
+
+stog: config.h
 	gcc stog.c -o stog
 
 clean:
