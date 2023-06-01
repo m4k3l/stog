@@ -25,6 +25,10 @@
 #define MAX_TITLE_LENGTH 100
 #define MAX_CONTENT_LENGTH 1000
 
+void print_head();
+void print_page_header();
+void print_post(const char *title, const char *content);
+
 void print_head() {
     printf("<!DOCTYPE html>\n<html>\n<head>\n"
     "<meta charset=\"UTF-8\">\n"
@@ -33,13 +37,23 @@ void print_head() {
     "<link rel=\"stylesheet\" href=\"%s\">\n"
     "</head>\n", url, title, css);
 }
-void create_post(const char *title, const char *content) {
+
+void print_page_header() {
+    printf("<h1>%s</h1>\n"
+	    "<div id=\"nav\">\n"
+	    "<a href=\"/\">posts</a>\n"
+	    "<a href=\"%s\">homepage</a>\n"
+	    "<hr>"
+	    "</div>", title, homepage);
+}
+
+void print_post(const char *title, const char *content) {
     print_head();
-    printf("<body>\n");
-    printf("<h1>%s</h1>\n", title);
-    printf("<p>%s</p>\n", content);
-    printf("</body>\n");
-    printf("</html>\n");
+    print_page_header();
+    printf("<body>\n"
+	    "<h1>%s</h1>\n"
+	    "<p>%s</p>\n"
+	    "</body></html>\n", title, content);
 }
 
 int main() {
@@ -64,7 +78,7 @@ int main() {
 
     content[strcspn(content, "\n")] = '\0';
 
-    create_post(title, content);
+    print_post(title, content);
 
     return 0;
 }
