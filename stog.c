@@ -3,34 +3,26 @@
 #include <string.h>
 #include <unistd.h>
 
+#include "config.h"
+
 #define MAX_TITLE_LENGTH 100
 #define MAX_CONTENT_LENGTH 1000
 
+void print_head() {
+    printf("<!DOCTYPE html>\n<html>\n<head>\n"
+    "<meta charset=\"UTF-8\">\n"
+    "<base href=\"%s\">\n"
+    "<title>%s</title>\n"
+    "<link rel=\"stylesheet\" href=\"%s\">\n"
+    "</head>\n", url, title, css);
+}
 void create_post(const char *title, const char *content) {
-    char filename[MAX_TITLE_LENGTH + 5];
-    sprintf(filename, "%s.html", title);
-
-    FILE *file = fopen(filename, "w");
-    if (file == NULL) {
-        printf("Could not create file.\n");
-        return;
-    }
-
-    fprintf(file, "<html>\n");
-    fprintf(file, "<head>\n");
-    fprintf(file, "<title>%s</title>\n", title);
-    fprintf(file, "<base href=\"https://blog.hanetzok.net\">\n");
-    fprintf(file, "<link rel=\"stylesheet\" href=\"/blog.css\">\n");
-    fprintf(file, "</head>\n");
-    fprintf(file, "<body>\n");
-    fprintf(file, "<h1>%s</h1>\n", title);
-    fprintf(file, "<p>%s</p>\n", content);
-    fprintf(file, "</body>\n");
-    fprintf(file, "</html>\n");
-
-    fclose(file);
-
-    printf("Post created.\n");
+    print_head();
+    printf("<body>\n");
+    printf("<h1>%s</h1>\n", title);
+    printf("<p>%s</p>\n", content);
+    printf("</body>\n");
+    printf("</html>\n");
 }
 
 int main() {
