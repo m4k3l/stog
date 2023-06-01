@@ -45,12 +45,7 @@ void create_post(const char *title, const char *content) {
 int main() {
     char input[MAX_TITLE_LENGTH + MAX_CONTENT_LENGTH + 2];
 
-    if (!isatty(fileno(stdin))) {
-        fgets(input, sizeof(input), stdin);
-    } else {
-        printf("Enter title and content (separated by |): ");
-        fgets(input, sizeof(input), stdin);
-    }
+    fgets(input, sizeof(input), stdin);
 
     char *separator = strchr(input, '|');
     if (separator == NULL) {
