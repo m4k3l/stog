@@ -57,10 +57,6 @@ void print_post(const char *title, const char *content) {
 }
 
 int main() {
-    if (isatty(fileno(stdin))) {
-        printf("Usage: <input> | stog\n");
-        return 1;
-    }
     char input[MAX_TITLE_LENGTH + MAX_CONTENT_LENGTH + 2];
 
     fgets(input, sizeof(input), stdin);
